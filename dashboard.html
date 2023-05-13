@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}!</h1>
+    <h2>Your Appointments:</h2>
+    <ul>
+        {% if appointments %}
+            {% for doctor, appointments_list in appointments.items() %}
+                <li>
+                    <h3>{{ doctor }} Appointments:</h3>
+                    <ul>
+                        {% for appointment in appointments_list %}
+                            <li>{{ appointment.strftime('%Y-%m-%d %H:%M') }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>No appointments scheduled.</li>
+        {% endif %}
+    </ul>
+    <button><a href="/schedule" style="text-decoration:none; color:white;">Schedule Appointment</a></button>
+    <br><br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
