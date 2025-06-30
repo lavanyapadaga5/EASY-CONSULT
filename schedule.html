@@ -28,4 +28,34 @@
         <input type="submit" value="Schedule">
     </form>
 </body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="border">
+        <div class="header">
+            <h1>Schedule Appointment</h1>
+        </div>
+        <form method="POST" action="/schedule">
+            <label for="doctor" class="word">Doctor:</label><br>
+            <select name="doctor" id="doctor" class="textbox">
+                {% for doctor in doctors %}
+                    <option value="{{ doctor }}">{{ doctor }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label for="date" class="word">Date:</label><br>
+            <input type="date" name="date" id="date" class="textbox">
+            <br><br>
+            <label for="time" class="word">Time:</label><br>
+            <input type="time" name="time" id="time" class="textbox">
+            <br><br>
+            <input type="submit" value="Schedule" class="btn">
+        </form>
+    </div>
+</body>
 </html>
+
