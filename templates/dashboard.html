@@ -1,1 +1,63 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        h1, h2, h3 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: slideUp 1s;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f0f0f0;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .logout-btn, .schedule-btn {
+            display: inline-block;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <h2>Your Appointments:</h2>
+        <ul>
+            {% if appointments %}
+                {% for doctor, appointments_list in appointments.items() %}
+                    <li>
+                        <h3>{{ doctor }}:</h3>
+                        <ul>
+                            {% for appointment in appointments_list %}
+                                <li>{{ appointment }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No appointments scheduled.</li>
+            {% endif %}
+        </ul>
+        <div class="schedule-btn">
+            <a href="/schedule" class="btn">Schedule Appointment</a>
+        </div>
+        <div class="logout-btn">
+            <a href="/logout" class="btn" style="background-color:red;">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
